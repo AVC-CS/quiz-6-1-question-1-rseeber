@@ -14,18 +14,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: T1 with data.txt
-      id: t1-with-data-txt
+    - name: T1 without data.txt
+      id: t1-without-data-txt
       uses: education/autograding-command-grader@v1
       with:
-        test-name: T1 with data.txt
+        test-name: T1 without data.txt
         setup-command: ''
-        command: make clean && make test < data.txt
+        command: make clean && make test
         timeout: 10
         max-score: 10
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
       env:
-        T1-WITH-DATA-TXT_RESULTS: "${{steps.t1-with-data-txt.outputs.result}}"
+        T1-WITHOUT-DATA-TXT_RESULTS: "${{steps.t1-without-data-txt.outputs.result}}"
       with:
-        runners: t1-with-data-txt
+        runners: t1-without-data-txt
